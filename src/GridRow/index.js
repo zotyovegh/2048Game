@@ -1,13 +1,13 @@
 import React from "react";
+import Cell from "../Cell";
 
 const GridRow = (props) => {
    let cells = props.cells.map((data, index) => {
-    //return <GridCell key={index} data={data} />;
-    return <div>p</div>
+    return <Cell key={index} data={data} />;
   });
- // {cells}
+ // 
 
-  return <div className="row">r</div>;
+  return <div className="row">{cells}</div>;
 };
 
 export default GridRow;
