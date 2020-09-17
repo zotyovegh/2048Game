@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import GridRow from "../GridRow";
 
 class Grid extends Component {
   constructor(props) {
@@ -20,13 +21,14 @@ class Grid extends Component {
         });
       }
     }
+    return grid;
   };
 
   render() {
-   /* let rows = this.state.rows.map((row, index) => {
+    let rows = this.state.rows.map((row, index) => {
       return <GridRow cells={row} key={index} />;
-    });{rows}*/
-    return <div className="grid">t</div>;
+    });
+    return <div className="grid">{rows}</div>;
   }
 }
 

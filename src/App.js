@@ -6,8 +6,8 @@ class App extends Component {
   constructor(props) {
     super();
     this.state = {
-      rows: 9,
-      columns: 9,
+      rows: 4,
+      columns: 4,
     };
   }
 
