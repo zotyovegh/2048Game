@@ -43,7 +43,7 @@ class Grid extends Component {
     document.onkeydown = this.onKeyPressed;
   }
 
-  slideRight = (row) => {
+  slide = (row) => {
     let array = [];
     for (let i = 0; i < 4; i++) {
       array[i] = row[i].value;
@@ -61,25 +61,7 @@ class Grid extends Component {
     return row;
   };
 
-  slideLeft = (row) => {
-    let array = [];
-    for (let i = 0; i < 4; i++) {
-      array[i] = row[i].value;
-    }
-    let arr = array.filter((val) => val);
-    let missing = 4 - arr.length;
-    let zeros = Array(missing).fill(0);
-    arr = arr.concat(zeros);
-    console.log("heyy");
-    for (let i = 0; i < 4; i++) {
-      console.log(arr[i]);
-      row[i].value = arr[i];
-    }
-
-    return row;
-  };
-
-  combineRight = (row) => {
+  combine = (row) => {
     for (let i = 3; i >= 1; i--) {
       let a = row[i].value;
       let b = row[i - 1].value;
@@ -90,16 +72,12 @@ class Grid extends Component {
     }
     return row;
   };
-  combineLeft = (row) => {
-    for (let i = 0; i <= 2; i++) {
-      let a = row[i].value;
-      let b = row[i + 1].value;
-      if (a == b) {
-        row[i].value = a + b;
-        row[i + 1].value = 0;
-      }
+
+  flip = (grid) => {
+    for (let i = 0; i < 4; i++) {
+      grid[i].reverse();
     }
-    return row;
+    return grid;
   };
 
   placeRandom = () => {
@@ -121,15 +99,16 @@ class Grid extends Component {
 
   onKeyPressed = (e) => {
     let grid = this.state.rows;
+    let flipped = false;
     e = e || window.event;
     switch (e.keyCode) {
       case 39:
       case 68:
         for (let i = 0; i < 4; i++) {
           this.setState({});
-          grid[i] = this.slideRight(grid[i]);
-          grid[i] = this.combineRight(grid[i]);
-          grid[i] = this.slideRight(grid[i]);
+          grid[i] = this.slide(grid[i]);
+          grid[i] = this.combine(grid[i]);
+          grid[i] = this.slide(grid[i]);
         }
 
         this.setState({ rows: grid });
@@ -139,16 +118,20 @@ class Grid extends Component {
         break;
       case 37:
       case 65:
+        this.flip(grid);
+        flipped = true;
+
         for (let i = 0; i < 4; i++) {
           this.setState({});
-          grid[i] = this.slideLeft(grid[i]);
-          grid[i] = this.combineLeft(grid[i]);
-          grid[i] = this.slideLeft(grid[i]);
+          grid[i] = this.slide(grid[i]);
+          grid[i] = this.combine(grid[i]);
+          grid[i] = this.slide(grid[i]);
         }
 
         this.setState({ rows: grid });
 
         this.placeRandom();
+
         console.log("LEFT");
         break;
       case 40:
@@ -159,6 +142,10 @@ class Grid extends Component {
       case 87:
         console.log("UP");
         break;
+    }
+    if (flipped) {
+      this.flip(grid);
+      this.setState({ rows: grid });
     }
   };
 
