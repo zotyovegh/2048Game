@@ -23,7 +23,24 @@ class Grid extends Component {
       }
     }
 
+    for (let i = 0; i < 2; i++) {
+      this.placeRandom(props, grid);
+    }
+
     return grid;
+  };
+
+  placeRandom = (props, grid) => {
+    let chosencell;
+    do {
+      let row = Math.floor(Math.random() * props.rows);
+      let col = Math.floor(Math.random() * props.columns);
+      chosencell = grid[row][col];
+    } while (chosencell.value > 0);
+
+    if (chosencell.value === 0) {
+      chosencell.value = Math.floor(Math.random() * (2 - 1 + 1) + 1) * 2;
+    }
   };
 
   render() {
