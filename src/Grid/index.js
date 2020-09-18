@@ -43,7 +43,7 @@ class Grid extends Component {
     document.onkeydown = this.onKeyPressed;
   }
 
-  slide = (row) => {
+  slideRight = (row) => {
     let array = [];
     for (let i = 0; i < 4; i++) {
       array[i] = row[i].value;
@@ -61,14 +61,42 @@ class Grid extends Component {
     return row;
   };
 
-  combine = (row) => {
+  slideLeft = (row) => {
+    let array = [];
+    for (let i = 0; i < 4; i++) {
+      array[i] = row[i].value;
+    }
+    let arr = array.filter((val) => val);
+    let missing = 4 - arr.length;
+    let zeros = Array(missing).fill(0);
+    arr = arr.concat(zeros);
+    console.log("heyy");
+    for (let i = 0; i < 4; i++) {
+      console.log(arr[i]);
+      row[i].value = arr[i];
+    }
+
+    return row;
+  };
+
+  combineRight = (row) => {
     for (let i = 3; i >= 1; i--) {
       let a = row[i].value;
       let b = row[i - 1].value;
       if (a == b) {
         row[i].value = a + b;
         row[i - 1].value = 0;
-        break;
+      }
+    }
+    return row;
+  };
+  combineLeft = (row) => {
+    for (let i = 0; i <= 2; i++) {
+      let a = row[i].value;
+      let b = row[i + 1].value;
+      if (a == b) {
+        row[i].value = a + b;
+        row[i + 1].value = 0;
       }
     }
     return row;
@@ -97,18 +125,30 @@ class Grid extends Component {
     switch (e.keyCode) {
       case 39:
       case 68:
-        console.log("RIGHT");
         for (let i = 0; i < 4; i++) {
           this.setState({});
-          grid[i] = this.slide(grid[i]);
-          grid[i] = this.combine(grid[i]);
+          grid[i] = this.slideRight(grid[i]);
+          grid[i] = this.combineRight(grid[i]);
+          grid[i] = this.slideRight(grid[i]);
         }
+
         this.setState({ rows: grid });
 
         this.placeRandom();
+        console.log("RIGHT");
         break;
       case 37:
       case 65:
+        for (let i = 0; i < 4; i++) {
+          this.setState({});
+          grid[i] = this.slideLeft(grid[i]);
+          grid[i] = this.combineLeft(grid[i]);
+          grid[i] = this.slideLeft(grid[i]);
+        }
+
+        this.setState({ rows: grid });
+
+        this.placeRandom();
         console.log("LEFT");
         break;
       case 40:
