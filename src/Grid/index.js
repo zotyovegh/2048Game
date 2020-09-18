@@ -111,9 +111,6 @@ class Grid extends Component {
           grid[i] = this.slide(grid[i]);
         }
 
-        this.setState({ rows: grid });
-
-        this.placeRandom();
         console.log("RIGHT");
         break;
       case 37:
@@ -128,10 +125,6 @@ class Grid extends Component {
           grid[i] = this.slide(grid[i]);
         }
 
-        this.setState({ rows: grid });
-
-        this.placeRandom();
-
         console.log("LEFT");
         break;
       case 40:
@@ -143,10 +136,12 @@ class Grid extends Component {
         console.log("UP");
         break;
     }
+
+    this.setState({ rows: grid });
     if (flipped) {
       this.flip(grid);
-      this.setState({ rows: grid });
     }
+    this.placeRandom();
   };
 
   render() {
