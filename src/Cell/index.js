@@ -2,7 +2,11 @@ import React from "react";
 
 const Cell = (props) => {
   let cell = () => {
-    return <div className="cell">c</div>;
+    if (props.data.value !== 0) {
+      return <div className="cell"> {props.data.value}</div>;
+    }else{
+      return <div className="cell"></div>
+    }
   };
   return cell();
 };

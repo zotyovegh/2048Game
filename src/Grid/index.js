@@ -18,9 +18,11 @@ class Grid extends Component {
         grid[i].push({
           x: j,
           y: i,
+          value: 0,
         });
       }
     }
+
     return grid;
   };
 
