@@ -13,9 +13,9 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
-        <div>
-          <Grid rows={this.state.rows} columns={this.state.columns} />
+      <div>
+        <div className="App">
+          <Grid className="grid" rows={this.state.rows} columns={this.state.columns} />
         </div>
       </div>
     );
