@@ -34,26 +34,22 @@ class Grid extends Component {
     document.onkeydown = this.onKeyPressed;
   }
 
-  onKeyPressed = (e) => {
-    e = e || window.event;
-    switch (e.keyCode) {
-      case 39:
-      case 68:
-        console.log("RIGHT");
-        break;
-      case 37:
-      case 65:
-        console.log("LEFT");
-        break;
-      case 40:
-      case 83:
-        console.log("DOWN");
-        break;
-      case 38:
-      case 87:
-        console.log("UP");
-        break;
+  slide = (row) => {
+    let array = [];
+    for (let i = 0; i < 4; i++) {
+      array[i] = row[i].value;
     }
+    let arr = array.filter((val) => val);
+    let missing = 4 - arr.length;
+    let zeros = Array(missing).fill(0);
+    arr = arr.concat(zeros);
+    console.log("heyy");
+    for (let i = 0; i < 4; i++) {
+      console.log(arr[i]);
+      row[i].value = arr[i];
+    }
+
+    return row;
   };
 
   placeRandom = (props, grid) => {
@@ -66,6 +62,34 @@ class Grid extends Component {
 
     if (chosencell.value === 0) {
       chosencell.value = Math.floor(Math.random() * (2 - 1 + 1) + 1) * 2;
+    }
+  };
+
+  onKeyPressed = (e) => {
+    let grid = this.state.rows;
+    e = e || window.event;
+    switch (e.keyCode) {
+      case 39:
+      case 68:
+        console.log("RIGHT");
+        break;
+      case 37:
+      case 65:
+        for (let i = 0; i < 4; i++) {
+          this.setState({});
+          grid[i] = this.slide(grid[i]);
+        }
+        this.setState({ rows: grid });
+        console.log("LEFT");
+        break;
+      case 40:
+      case 83:
+        console.log("DOWN");
+        break;
+      case 38:
+      case 87:
+        console.log("UP");
+        break;
     }
   };
 
