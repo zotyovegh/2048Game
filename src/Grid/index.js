@@ -30,6 +30,32 @@ class Grid extends Component {
     return grid;
   };
 
+  componentDidMount() {
+    document.onkeydown = this.onKeyPressed;
+  }
+
+  onKeyPressed = (e) => {
+    e = e || window.event;
+    switch (e.keyCode) {
+      case 39:
+      case 68:
+        console.log("RIGHT");
+        break;
+      case 37:
+      case 65:
+        console.log("LEFT");
+        break;
+      case 40:
+      case 83:
+        console.log("DOWN");
+        break;
+      case 38:
+      case 87:
+        console.log("UP");
+        break;
+    }
+  };
+
   placeRandom = (props, grid) => {
     let chosencell;
     do {
