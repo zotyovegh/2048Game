@@ -24,7 +24,16 @@ class Grid extends Component {
     }
 
     for (let i = 0; i < 2; i++) {
-      this.placeRandom(props, grid);
+      let chosencell;
+      do {
+        let row = Math.floor(Math.random() * props.rows);
+        let col = Math.floor(Math.random() * props.columns);
+        chosencell = grid[row][col];
+      } while (chosencell.value > 0);
+
+      if (chosencell.value === 0) {
+        chosencell.value = Math.floor(Math.random() * (2 - 1 + 1) + 1) * 2;
+      }
     }
 
     return grid;
@@ -42,7 +51,7 @@ class Grid extends Component {
     let arr = array.filter((val) => val);
     let missing = 4 - arr.length;
     let zeros = Array(missing).fill(0);
-    arr = arr.concat(zeros);
+    arr = zeros.concat(arr);
     console.log("heyy");
     for (let i = 0; i < 4; i++) {
       console.log(arr[i]);
@@ -52,17 +61,34 @@ class Grid extends Component {
     return row;
   };
 
-  placeRandom = (props, grid) => {
+  combine = (row) => {
+    for (let i = 3; i >= 1; i--) {
+      let a = row[i].value;
+      let b = row[i - 1].value;
+      if (a == b) {
+        row[i].value = a + b;
+        row[i - 1].value = 0;
+        break;
+      }
+    }
+    return row;
+  };
+
+  placeRandom = () => {
+    let grid = this.state.rows;
+    let row, col;
     let chosencell;
     do {
-      let row = Math.floor(Math.random() * props.rows);
-      let col = Math.floor(Math.random() * props.columns);
+      row = Math.floor(Math.random() * this.props.rows);
+      col = Math.floor(Math.random() * this.props.columns);
       chosencell = grid[row][col];
     } while (chosencell.value > 0);
 
     if (chosencell.value === 0) {
       chosencell.value = Math.floor(Math.random() * (2 - 1 + 1) + 1) * 2;
     }
+    grid[row][col] = chosencell;
+    this.setState({ rows: grid });
   };
 
   onKeyPressed = (e) => {
@@ -72,14 +98,17 @@ class Grid extends Component {
       case 39:
       case 68:
         console.log("RIGHT");
-        break;
-      case 37:
-      case 65:
         for (let i = 0; i < 4; i++) {
           this.setState({});
           grid[i] = this.slide(grid[i]);
+          grid[i] = this.combine(grid[i]);
         }
         this.setState({ rows: grid });
+
+        this.placeRandom();
+        break;
+      case 37:
+      case 65:
         console.log("LEFT");
         break;
       case 40:
