@@ -39,6 +39,22 @@ class Grid extends Component {
     return grid;
   };
 
+  getEmptyGrid = () => {
+    let grid = [];
+
+    for (let i = 0; i < this.props.rows; i++) {
+      grid.push([]);
+      for (let j = 0; j < this.props.columns; j++) {
+        grid[i].push({
+          x: j,
+          y: i,
+          value: 0,
+        });
+      }
+    }
+    return grid;
+  };
+
   componentDidMount() {
     document.onkeydown = this.onKeyPressed;
   }
@@ -52,9 +68,7 @@ class Grid extends Component {
     let missing = 4 - arr.length;
     let zeros = Array(missing).fill(0);
     arr = zeros.concat(arr);
-    console.log("heyy");
     for (let i = 0; i < 4; i++) {
-      console.log(arr[i]);
       row[i].value = arr[i];
     }
 
@@ -77,7 +91,16 @@ class Grid extends Component {
     for (let i = 0; i < 4; i++) {
       grid[i].reverse();
     }
-    return grid;
+  };
+
+  rotate = (grid) => {
+    let newGrid = this.getEmptyGrid();
+    for (let i = 0; i < 4; i++) {
+      for (let j = 0; j < 4; j++) {
+        newGrid[i][j] = grid[j][i];
+      }
+    }
+    return newGrid;
   };
 
   placeRandom = () => {
@@ -100,6 +123,7 @@ class Grid extends Component {
   onKeyPressed = (e) => {
     let grid = this.state.rows;
     let flipped = false;
+    let rotated = false;
     e = e || window.event;
     switch (e.keyCode) {
       case 39:
@@ -110,7 +134,6 @@ class Grid extends Component {
           grid[i] = this.combine(grid[i]);
           grid[i] = this.slide(grid[i]);
         }
-
         console.log("RIGHT");
         break;
       case 37:
@@ -129,6 +152,16 @@ class Grid extends Component {
         break;
       case 40:
       case 83:
+        grid = this.rotate(grid);
+        rotated = true;
+
+        for (let i = 0; i < 4; i++) {
+          this.setState({});
+          grid[i] = this.slide(grid[i]);
+          grid[i] = this.combine(grid[i]);
+          grid[i] = this.slide(grid[i]);
+        }
+
         console.log("DOWN");
         break;
       case 38:
@@ -137,10 +170,15 @@ class Grid extends Component {
         break;
     }
 
-    this.setState({ rows: grid });
     if (flipped) {
       this.flip(grid);
     }
+    if (rotated) {
+      grid = this.rotate(grid);
+      grid = this.rotate(grid);
+      grid = this.rotate(grid);
+    }
+    this.setState({ rows: grid });
     this.placeRandom();
   };
 
