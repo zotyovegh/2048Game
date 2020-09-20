@@ -79,7 +79,7 @@ class Grid extends Component {
     for (let i = 3; i >= 1; i--) {
       let a = row[i].value;
       let b = row[i - 1].value;
-      if (a == b) {
+      if (a === b) {
         row[i].value = a + b;
         row[i - 1].value = 0;
       }
@@ -132,6 +132,7 @@ class Grid extends Component {
 
   onKeyPressed = (e) => {
     let grid = this.state.rows;
+    let copiedGrid = JSON.stringify(grid);
     let flipped = false;
     let rotated = false;
     e = e || window.event;
@@ -178,9 +179,10 @@ class Grid extends Component {
       grid = this.rotate(grid);
       grid = this.rotate(grid);
     }
-
     this.setState({ rows: grid });
-    this.placeRandom();
+    if (JSON.stringify(grid) !== copiedGrid) {
+      this.placeRandom();
+    }
   };
 
   render() {
