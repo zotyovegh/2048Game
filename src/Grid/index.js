@@ -102,7 +102,7 @@ class Grid extends Component {
       }
     }
     return newGrid;
-  };
+  };  
 
   placeRandom = () => {
     let grid = this.state.rows;
@@ -130,44 +130,29 @@ class Grid extends Component {
     return grid;
   };
 
-  onKeyPressed = (e) => {
+  keyEvents = (direction) => {
     let grid = this.state.rows;
     let flipped = false;
     let rotated = false;
-    e = e || window.event;
-    switch (e.keyCode) {
-      case 39:
-      case 68:
-        //RIGHT
-        grid = this.doSlide(grid);
-        break;
-      case 37:
-      case 65:
-        //LEFT
-        grid = this.flip(grid);
-        grid = this.doSlide(grid);
+    if (direction === "right") {
+      grid = this.doSlide(grid);
+    } else if (direction === "left") {
+      grid = this.flip(grid);
+      grid = this.doSlide(grid);
 
-        flipped = true;
-        break;
-      case 40:
-      case 83:
-        //DOWN
-        grid = this.rotate(grid);
-        grid = this.doSlide(grid);
+      flipped = true;
+    } else if (direction === "down") {
+      grid = this.rotate(grid);
+      grid = this.doSlide(grid);
 
-        rotated = true;
-        break;
-      case 38:
-      case 87:
-        //UP
-        grid = this.rotate(grid);
-        grid = this.flip(grid);
+      rotated = true;
+    } else if (direction === "up") {
+      grid = this.rotate(grid);
+      grid = this.flip(grid);
+      grid = this.doSlide(grid);
 
-        grid = this.doSlide(grid);
-
-        rotated = true;
-        flipped = true;
-        break;
+      rotated = true;
+      flipped = true;
     }
 
     if (flipped) {
@@ -181,6 +166,28 @@ class Grid extends Component {
 
     this.setState({ rows: grid });
     this.placeRandom();
+  };
+
+  onKeyPressed = (e) => {
+    e = e || window.event;
+    switch (e.keyCode) {
+      case 39:
+      case 68:
+        this.keyEvents("right");
+        break;
+      case 37:
+      case 65:
+        this.keyEvents("left");
+        break;
+      case 40:
+      case 83:
+        this.keyEvents("down");
+        break;
+      case 38:
+      case 87:
+        this.keyEvents("up");
+        break;
+    }
   };
 
   render() {
