@@ -91,6 +91,7 @@ class Grid extends Component {
     for (let i = 0; i < 4; i++) {
       grid[i].reverse();
     }
+    return grid;
   };
 
   rotate = (grid) => {
@@ -138,7 +139,7 @@ class Grid extends Component {
         break;
       case 37:
       case 65:
-        this.flip(grid);
+        grid = this.flip(grid);
         flipped = true;
 
         for (let i = 0; i < 4; i++) {
@@ -166,12 +167,23 @@ class Grid extends Component {
         break;
       case 38:
       case 87:
+        grid = this.rotate(grid);
+        rotated = true;
+        grid = this.flip(grid);
+        flipped = true;
+
+        for (let i = 0; i < 4; i++) {
+          this.setState({});
+          grid[i] = this.slide(grid[i]);
+          grid[i] = this.combine(grid[i]);
+          grid[i] = this.slide(grid[i]);
+        }
         console.log("UP");
         break;
     }
 
     if (flipped) {
-      this.flip(grid);
+      grid = this.flip(grid);
     }
     if (rotated) {
       grid = this.rotate(grid);
