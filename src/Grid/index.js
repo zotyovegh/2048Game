@@ -121,6 +121,15 @@ class Grid extends Component {
     this.setState({ rows: grid });
   };
 
+  doSlide = (grid) => {
+    for (let i = 0; i < 4; i++) {
+      grid[i] = this.slide(grid[i]);
+      grid[i] = this.combine(grid[i]);
+      grid[i] = this.slide(grid[i]);
+    }
+    return grid;
+  };
+
   onKeyPressed = (e) => {
     let grid = this.state.rows;
     let flipped = false;
@@ -129,56 +138,35 @@ class Grid extends Component {
     switch (e.keyCode) {
       case 39:
       case 68:
-        for (let i = 0; i < 4; i++) {
-          this.setState({});
-          grid[i] = this.slide(grid[i]);
-          grid[i] = this.combine(grid[i]);
-          grid[i] = this.slide(grid[i]);
-        }
-        console.log("RIGHT");
+        //RIGHT
+        grid = this.doSlide(grid);
         break;
       case 37:
       case 65:
+        //LEFT
         grid = this.flip(grid);
+        grid = this.doSlide(grid);
+
         flipped = true;
-
-        for (let i = 0; i < 4; i++) {
-          this.setState({});
-          grid[i] = this.slide(grid[i]);
-          grid[i] = this.combine(grid[i]);
-          grid[i] = this.slide(grid[i]);
-        }
-
-        console.log("LEFT");
         break;
       case 40:
       case 83:
+        //DOWN
         grid = this.rotate(grid);
+        grid = this.doSlide(grid);
+
         rotated = true;
-
-        for (let i = 0; i < 4; i++) {
-          this.setState({});
-          grid[i] = this.slide(grid[i]);
-          grid[i] = this.combine(grid[i]);
-          grid[i] = this.slide(grid[i]);
-        }
-
-        console.log("DOWN");
         break;
       case 38:
       case 87:
+        //UP
         grid = this.rotate(grid);
-        rotated = true;
         grid = this.flip(grid);
-        flipped = true;
 
-        for (let i = 0; i < 4; i++) {
-          this.setState({});
-          grid[i] = this.slide(grid[i]);
-          grid[i] = this.combine(grid[i]);
-          grid[i] = this.slide(grid[i]);
-        }
-        console.log("UP");
+        grid = this.doSlide(grid);
+
+        rotated = true;
+        flipped = true;
         break;
     }
 
@@ -190,6 +178,7 @@ class Grid extends Component {
       grid = this.rotate(grid);
       grid = this.rotate(grid);
     }
+
     this.setState({ rows: grid });
     this.placeRandom();
   };
