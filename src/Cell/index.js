@@ -6,7 +6,10 @@ const Cell = (props) => {
       return (
         <div
           className="cell"
-          style={{ background: getColor(props.data.value) }}
+          style={{
+            color: getFontColor(props.data.value),
+            background: getBackgroundColor(props.data.value),
+          }}
         >
           {" "}
           {props.data.value}
@@ -19,7 +22,16 @@ const Cell = (props) => {
   return cell();
 };
 
-const getColor = (value) => {
+const getFontColor = (value) => {
+  switch (value) {
+    case 2:
+    case 4:
+      return "black";
+  }
+  return "white";
+};
+
+const getBackgroundColor = (value) => {
   switch (value) {
     case 2:
       return "#EBDCD0";
