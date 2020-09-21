@@ -81,6 +81,7 @@ class Grid extends Component {
       let b = row[i - 1].value;
       if (a === b) {
         row[i].value = a + b;
+        this.props.score(row[i].value);
         row[i - 1].value = 0;
       }
     }

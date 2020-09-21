@@ -33,7 +33,7 @@ const getFontColor = (value) => {
   switch (value) {
     case 2:
     case 4:
-      return "black";
+      return "#776e65";
   }
   return "white";
 };

@@ -8,14 +8,27 @@ class App extends Component {
     this.state = {
       rows: 4,
       columns: 4,
+      score: 0,
     };
   }
 
+  setScore = (value) => {
+    let newValue = this.state.score + value;
+    this.setState({ score: newValue });
+  };
+
   render() {
     return (
-      <div>
-        <div className="App">
-          <Grid className="grid" rows={this.state.rows} columns={this.state.columns} />
+      <div className="App">
+        <div className="grid">
+          <Grid
+            score={this.setScore.bind(this)}
+            rows={this.state.rows}
+            columns={this.state.columns}
+          />
+        </div>
+        <div className="score">
+          <p>{this.state.score} </p>
         </div>
       </div>
     );
