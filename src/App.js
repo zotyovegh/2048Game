@@ -45,8 +45,13 @@ class App extends Component {
             columns={this.state.columns}
           />
         </div>
-        <div className="score">
-          <p>{this.state.score} </p>
+        <div className="header">
+          <div className="score">
+            <p>{this.state.score} </p>
+          </div>
+          <div className="newGame">
+            <button>New game</button>
+          </div>
         </div>
       </div>
     );

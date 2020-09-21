@@ -1,7 +1,7 @@
 .grid {
   width: 480px;
   height: 480px;
-  border: 10px solid #bbada0;
+  border: 8px solid #bbada0;
   background-color: #bbada0;
   border-radius: 8px;
 }
@@ -21,4 +21,22 @@
   font-family: sans-serif;
   font-weight: bold;
   border-radius: 8px;
+}
+
+.header {
+  background-color: #bbada0;
+  font-family: sans-serif;
+  font-weight: bold;
+  width: 200px;
+  overflow: hidden;
+}
+
+.score {
+  float: left;
+  width: 100px;
+}
+
+.newGame {
+  width: 100px;
+  overflow: hidden;
 }

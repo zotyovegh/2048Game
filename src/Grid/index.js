@@ -15,7 +15,6 @@ class Grid extends Component {
   };
 
   createGrid = (props) => {
-    console.log("Start");
     let grid = [];
 
     for (let i = 0; i < props.rows; i++) {
@@ -141,7 +140,7 @@ class Grid extends Component {
     let grid = this.state.rows;
     for (let i = 0; i < 4; i++) {
       for (let j = 0; j < 4; j++) {
-        if (grid[i][j].value == 0) {
+        if (grid[i][j].value === 0) {
           return;
         }
         if (i !== 3 && grid[i][j].value === grid[i + 1][j].value) {
@@ -213,6 +212,8 @@ class Grid extends Component {
         rotated = true;
         flipped = true;
         break;
+        default:
+          break;
     }
 
     if (flipped) {

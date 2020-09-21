@@ -34,6 +34,8 @@ const getFontColor = (value) => {
     case 2:
     case 4:
       return "#776e65";
+    default:
+      break;
   }
   return "white";
 };
@@ -74,6 +76,8 @@ const getBackgroundColor = (value) => {
       return "#5da0df";
     case 131072:
       return "#007cbe";
+    default:
+      break;
   }
 };
 
