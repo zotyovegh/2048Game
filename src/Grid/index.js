@@ -131,6 +131,24 @@ class Grid extends Component {
     return grid;
   };
 
+  isGameOver = () => {
+    let grid = this.state.rows;
+    for (let i = 0; i < 4; i++) {
+      for (let j = 0; j < 4; j++) {
+        if (grid[i][j].value == 0) {
+          return;
+        }
+        if (i !== 3 && grid[i][j].value === grid[i + 1][j].value) {
+          return;
+        }
+        if (j !== 3 && grid[i][j].value === grid[i][j + 1].value) {
+          return;
+        }
+      }
+    }
+    console.log("Game over!!!");
+  };
+
   onKeyPressed = (e) => {
     let grid = this.state.rows;
     let copiedGrid = JSON.stringify(grid);
@@ -181,9 +199,11 @@ class Grid extends Component {
       grid = this.rotate(grid);
     }
     this.setState({ rows: grid });
+
     if (JSON.stringify(grid) !== copiedGrid) {
       this.placeRandom();
     }
+    this.isGameOver();
   };
 
   render() {
