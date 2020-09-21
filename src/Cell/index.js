@@ -53,15 +53,27 @@ const getBackgroundColor = (value) => {
     case 64:
       return "#F1462C";
     case 128:
-      return "#E7C65E";
+      return "#ecce72";
     case 256:
-      return "#E8C350";
+      return "#eccb61";
     case 512:
-      return "#E8BE40";
+      return "#ecc750";
     case 1024:
-      return "#E7B723";
+      return "#ecc440";
     case 2048:
-      return "#C2B3A3";
+      return "#ecc12e";
+    case 4096:
+      return "#ef676c";
+    case 8192:
+      return "#ec4d58";
+    case 16384:
+      return "#e14339";
+    case 32768:
+      return "#71b4d5";
+    case 65536:
+      return "#5da0df";
+    case 131072:
+      return "#007cbe";
   }
 };
 
