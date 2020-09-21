@@ -158,11 +158,13 @@ class Grid extends Component {
     switch (e.keyCode) {
       case 39:
       case 68:
+      case 99:
         //RIGHT
         grid = this.doSlide(grid);
         break;
       case 37:
       case 65:
+      case 97:
         //LEFT
         grid = this.flip(grid);
         grid = this.doSlide(grid);
@@ -171,6 +173,7 @@ class Grid extends Component {
         break;
       case 40:
       case 83:
+      case 98:
         //DOWN
         grid = this.rotate(grid);
         grid = this.doSlide(grid);
@@ -179,6 +182,7 @@ class Grid extends Component {
         break;
       case 38:
       case 87:
+      case 101:
         //UP
         grid = this.rotate(grid);
         grid = this.flip(grid);
