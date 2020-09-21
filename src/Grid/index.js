@@ -6,14 +6,16 @@ class Grid extends Component {
     super(props);
     this.state = {
       rows: this.createGrid(props),
+      status: "active",
     };
   }
 
   reset = () => {
-    this.setState({ rows: this.createGrid(this.props) });
+    this.setState({ rows: this.createGrid(this.props), status: "active" });
   };
 
   createGrid = (props) => {
+    console.log("Start");
     let grid = [];
 
     for (let i = 0; i < props.rows; i++) {
@@ -150,8 +152,22 @@ class Grid extends Component {
         }
       }
     }
-    console.log("Game over!!!");
     this.props.gameOver();
+  };
+
+  isGameWon = () => {
+    let grid = this.state.rows;
+    for (let i = 0; i < 4; i++) {
+      for (let j = 0; j < 4; j++) {
+        if (this.state.status === "active") {
+          if (grid[i][j].value === 2048) {
+            this.props.gameWon();
+            this.setState({ status: "endless" });
+          }
+        }
+      }
+    }
+    return;
   };
 
   onKeyPressed = (e) => {
@@ -213,6 +229,7 @@ class Grid extends Component {
       this.placeRandom();
     }
     this.isGameOver();
+    this.isGameWon();
   };
 
   render() {

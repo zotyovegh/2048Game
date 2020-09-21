@@ -14,12 +14,19 @@ class App extends Component {
   }
 
   setScore = (value) => {
-    console.log(value);
     let newValue = this.state.score + value;
     this.setState({ score: newValue });
   };
 
   gameOver = () => {
+    console.log("Game over");
+    //Display stuff
+    // this.gridRef.current.reset();
+    // this.setState({ score: 0 });
+  };
+
+  gameWon = () => {
+    console.log("Won");
     //Display stuff
     // this.gridRef.current.reset();
     // this.setState({ score: 0 });
@@ -33,6 +40,7 @@ class App extends Component {
             ref={this.gridRef}
             score={this.setScore.bind(this)}
             gameOver={this.gameOver.bind(this)}
+            gameWon={this.gameWon.bind(this)}
             rows={this.state.rows}
             columns={this.state.columns}
           />
