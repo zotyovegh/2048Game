@@ -1,7 +1,9 @@
 .grid {
   width: 480px;
   height: 480px;
-  border: 4px solid black;
+  border: 10px solid #bbada0;
+  background-color: #bbada0;
+  border-radius: 8px;
 }
 
 .row {
@@ -10,7 +12,7 @@
 }
 
 .cell {
-  border: 1px solid black;
+  margin: 6px;
   width: 120px;
   display: flex;
   justify-content: center;
@@ -18,4 +20,5 @@
   font-size: 50px;
   font-family: sans-serif;
   font-weight: bold;
+  border-radius: 8px;
 }

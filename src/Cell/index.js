@@ -16,7 +16,14 @@ const Cell = (props) => {
         </div>
       );
     } else {
-      return <div className="cell"></div>;
+      return (
+        <div
+          className="cell"
+          style={{
+            background: "#cdc1b4",
+          }}
+        ></div>
+      );
     }
   };
   return cell();
