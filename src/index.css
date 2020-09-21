@@ -27,16 +27,46 @@
   background-color: #bbada0;
   font-family: sans-serif;
   font-weight: bold;
-  width: 200px;
+  width: fit-content;
+  height: fit-content;
   overflow: hidden;
 }
 
 .score {
   float: left;
   width: 100px;
+  background-color: #cdc1b4;
+  margin: 5px;
+  border-radius: 8px;
+}
+
+#scoreNum {
+  text-align: center;
+  margin: 4px;
+}
+
+#scoreTitle {
+  text-align: center;
+  margin: 4px;
 }
 
 .newGame {
-  width: 100px;
   overflow: hidden;
+  border-radius: 8px;
+  padding: 4px;
+  background-color: #cdc1b4;
+  margin: 5px;
+}
+
+#newGameButton {
+  background-color: #cdc1b4;
+  border: none;
+  width: 120px;
+  text-align: center;
+  font-size: 16px;
+  cursor: pointer;
+  margin: 5px;
+  padding-top: 6px;
+  padding-bottom: 6px;
+  font-weight: bold;
 }

@@ -2,35 +2,26 @@ import React from "react";
 
 const Cell = (props) => {
   let cell = () => {
-    if (props.data.value !== 0) {
-      return (
-        <div
-          className="cell"
-          style={{
-            color: getFontColor(props.data.value),
-            background: getBackgroundColor(props.data.value),
-          }}
-        >
-          {" "}
-          {props.data.value}
-        </div>
-      );
-    } else {
-      return (
-        <div
-          className="cell"
-          style={{
-            background: "#cdc1b4",
-          }}
-        ></div>
-      );
-    }
+    return (
+      <div
+        className="cell"
+        style={{
+          color: getFontColor(props.data.value),
+          background: getBackgroundColor(props.data.value),
+        }}
+      >
+        {" "}
+        {props.data.value}
+      </div>
+    );
   };
   return cell();
 };
 
 const getFontColor = (value) => {
   switch (value) {
+    case 0:
+      return "#ffffff00";
     case 2:
     case 4:
       return "#776e65";
@@ -42,6 +33,8 @@ const getFontColor = (value) => {
 
 const getBackgroundColor = (value) => {
   switch (value) {
+    case 0:
+      return "#cdc1b4";
     case 2:
       return "#EBDCD0";
     case 4:

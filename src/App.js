@@ -47,10 +47,11 @@ class App extends Component {
         </div>
         <div className="header">
           <div className="score">
-            <p>{this.state.score} </p>
+            <p id="scoreTitle">Score</p>
+            <p id="scoreNum">{this.state.score} </p>
           </div>
           <div className="newGame">
-            <button>New game</button>
+            <button id="newGameButton">New game</button>
           </div>
         </div>
       </div>
