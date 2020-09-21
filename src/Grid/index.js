@@ -9,6 +9,10 @@ class Grid extends Component {
     };
   }
 
+  reset = () => {
+    this.setState({ rows: this.createGrid(this.props) });
+  };
+
   createGrid = (props) => {
     let grid = [];
 
@@ -147,6 +151,7 @@ class Grid extends Component {
       }
     }
     console.log("Game over!!!");
+    this.props.gameOver();
   };
 
   onKeyPressed = (e) => {
