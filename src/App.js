@@ -9,7 +9,7 @@ class App extends Component {
       rows: 4,
       columns: 4,
       score: 0,
-      isWinningBox: false,
+      isWinningBox: true,
     };
     this.gridRef = createRef();
   }
