@@ -1,5 +1,6 @@
 import React, { Component, createRef } from "react";
 import Grid from "../../2048game/src/Grid";
+import WinningBox from "./WinningBox";
 
 class App extends Component {
   constructor(props) {
@@ -8,6 +9,7 @@ class App extends Component {
       rows: 4,
       columns: 4,
       score: 0,
+      isWinningBox: true,
     };
     this.gridRef = createRef();
   }
@@ -29,7 +31,7 @@ class App extends Component {
 
   resetGame = () => {
     this.gridRef.current.reset();
-    this.setState({ score: 0 });
+    this.setState({ score: 0, isWinningBox: false });
   };
 
   render() {
@@ -41,10 +43,12 @@ class App extends Component {
             <p id="scoreNum">{this.state.score} </p>
           </div>
           <div className="newGame">
-            <button id="newGameButton">New game</button>
+            <button id="newGameButton" onClick={this.resetGame}>
+              New game
+            </button>
           </div>
         </div>
-        <div>
+        <div className="gridMain">
           <Grid
             ref={this.gridRef}
             score={this.setScore.bind(this)}
@@ -53,6 +57,11 @@ class App extends Component {
             rows={this.state.rows}
             columns={this.state.columns}
           />
+          <WinningBox
+            isOpen={this.state.isWinningBox}
+            onClose={(e) => this.setState({ isWinningBox: false })}
+            onNewGame={this.reset}
+          ></WinningBox>
         </div>
       </div>
     );
