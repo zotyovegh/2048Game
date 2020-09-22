@@ -1,2 +1,0 @@
-.grid{width:480px;height:480px;border:10px solid #bbada0;background-color:#bbada0;border-radius:8px}.row{height:120px}.cell,.row{display:flex}.cell{margin:6px;width:120px;justify-content:center;align-items:center;font-size:50px;font-family:sans-serif;font-weight:700;border-radius:8px}.grid{position:fixed;left:50%;top:50%;transform:translate(-50%,-50%)}
-/*# sourceMappingURL=main.80a09d54.chunk.css.map */
