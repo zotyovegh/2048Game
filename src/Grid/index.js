@@ -212,8 +212,8 @@ class Grid extends Component {
         rotated = true;
         flipped = true;
         break;
-        default:
-          break;
+      default:
+        break;
     }
 
     if (flipped) {

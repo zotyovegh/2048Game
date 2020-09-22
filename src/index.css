@@ -11,15 +11,20 @@
   position: relative;
 }
 
-.winningBox {
-  background-color: yellow;
+.winningMain {
   position: absolute;
   padding: 8px;
-
+  background-color: yellow;
   border-radius: 8px 8px 8px 8px;
   width: 100%;
   height: 100%;
-  opacity: 0.4;
+  opacity: 0.6;
+}
+
+.winningContent {
+  position: absolute;
+  width: 100%;
+  height: 100%;
 }
 
 .grid {
@@ -65,8 +70,8 @@
 .score {
   float: left;
   width: 42%;
-  margin: 10px 0px 12px 12px;
-  background-color: #cdc1b4;
+  margin: 10px 0px 10px 12px;
+  background-color: #ffca92;
   border-radius: 8px;
 }
 
@@ -87,7 +92,7 @@
 }
 
 #newGameButton {
-  background-color: #cdc1b4;
+  background-color: #fffb79;
   height: 48px;
   width: 100%;
   border: none;
@@ -96,4 +101,33 @@
   cursor: pointer;
   font-weight: bold;
   border-radius: 8px;
+}
+
+.boxButton {
+  background-color: rgb(255, 255, 229);
+  height: 48px;
+  width: 32%;
+  border: none;
+  text-align: center;
+  font-size: 18px;
+  cursor: pointer;
+  font-weight: bold;
+  border-radius: 8px;
+  margin-left: 14px;
+  margin-right: 14px;
+}
+
+#buttonHolder {
+  top: 50%;
+  left: 50%;
+  transform: translate(14%, -10%);
+}
+
+h1 {
+  font-size: 55px;
+  font-family: "Arial Black";
+  color: white;
+  text-align: center;
+  padding-top: 160px;
+  opacity: 1;
 }

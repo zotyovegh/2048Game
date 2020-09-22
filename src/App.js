@@ -9,7 +9,7 @@ class App extends Component {
       rows: 4,
       columns: 4,
       score: 0,
-      isWinningBox: true,
+      isWinningBox: false,
     };
     this.gridRef = createRef();
   }
@@ -25,8 +25,7 @@ class App extends Component {
   };
 
   gameWon = () => {
-    console.log("Won");
-    //Display stuff
+    this.setState({ isWinningBox: true });
   };
 
   resetGame = () => {
@@ -60,7 +59,7 @@ class App extends Component {
           <WinningBox
             isOpen={this.state.isWinningBox}
             onClose={(e) => this.setState({ isWinningBox: false })}
-            onNewGame={this.reset}
+            onNewGame={this.resetGame}
           ></WinningBox>
         </div>
       </div>
