@@ -1,6 +1,5 @@
 import React, { Component, createRef } from "react";
 import Grid from "../../2048game/src/Grid";
-import "./App.css";
 
 class App extends Component {
   constructor(props) {
@@ -21,30 +20,21 @@ class App extends Component {
   gameOver = () => {
     console.log("Game over");
     //Display stuff
-    // this.gridRef.current.reset();
-    // this.setState({ score: 0 });
   };
 
   gameWon = () => {
     console.log("Won");
     //Display stuff
-    // this.gridRef.current.reset();
-    // this.setState({ score: 0 });
+  };
+
+  resetGame = () => {
+    this.gridRef.current.reset();
+    this.setState({ score: 0 });
   };
 
   render() {
     return (
       <div className="App">
-        <div className="grid">
-          <Grid
-            ref={this.gridRef}
-            score={this.setScore.bind(this)}
-            gameOver={this.gameOver.bind(this)}
-            gameWon={this.gameWon.bind(this)}
-            rows={this.state.rows}
-            columns={this.state.columns}
-          />
-        </div>
         <div className="header">
           <div className="score">
             <p id="scoreTitle">Score</p>
@@ -54,9 +44,19 @@ class App extends Component {
             <button id="newGameButton">New game</button>
           </div>
         </div>
+        <div>
+          <Grid
+            ref={this.gridRef}
+            score={this.setScore.bind(this)}
+            gameOver={this.gameOver.bind(this)}
+            gameWon={this.gameWon.bind(this)}
+            rows={this.state.rows}
+            columns={this.state.columns}
+          />
+        </div>
       </div>
     );
   }
 }
-
+/**/
 export default App;
