@@ -37,7 +37,9 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+        
         <div className="header">
+          <div className="title">2048</div>
           <div className="score">
             <p id="scoreTitle">Score</p>
             <p id="scoreNum">{this.state.score} </p>
