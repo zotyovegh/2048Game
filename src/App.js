@@ -2,6 +2,7 @@ import React, { Component, createRef } from "react";
 import Grid from "../../2048game/src/Grid";
 import WinningBox from "./WinningBox";
 import LosingBox from "./LosingBox";
+import logo from "./GithubLogo.png";
 
 class App extends Component {
   constructor(props) {
@@ -37,7 +38,6 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        
         <div className="header">
           <div className="title">2048</div>
           <div className="score">
@@ -50,25 +50,33 @@ class App extends Component {
             </button>
           </div>
         </div>
-        <div className="gridMain">
-          <Grid
-            ref={this.gridRef}
-            score={this.setScore.bind(this)}
-            gameOver={this.gameOver.bind(this)}
-            gameWon={this.gameWon.bind(this)}
-            rows={this.state.rows}
-            columns={this.state.columns}
-          />
-          <WinningBox
-            isOpen={this.state.isWinningBox}
-            onClose={(e) => this.setState({ isWinningBox: false })}
-            onNewGame={this.resetGame}
-          ></WinningBox>
-          <LosingBox
-            isOpen={this.state.isLosingBox}
-            onClose={(e) => this.setState({ isLosingBox: false })}
-            onNewGame={this.resetGame}
-          ></LosingBox>
+        <div>
+          <div className="gridMain">
+            <Grid
+              ref={this.gridRef}
+              score={this.setScore.bind(this)}
+              gameOver={this.gameOver.bind(this)}
+              gameWon={this.gameWon.bind(this)}
+              rows={this.state.rows}
+              columns={this.state.columns}
+            />
+            <WinningBox
+              isOpen={this.state.isWinningBox}
+              onClose={(e) => this.setState({ isWinningBox: false })}
+              onNewGame={this.resetGame}
+            ></WinningBox>
+            <LosingBox
+              isOpen={this.state.isLosingBox}
+              onClose={(e) => this.setState({ isLosingBox: false })}
+              onNewGame={this.resetGame}
+            ></LosingBox>
+          </div>
+          <div className="logo">
+            <a href="https://github.com/zotyovegh/2048Game">
+              {" "}
+              <img width="150" height="35" src={logo} />
+            </a>
+          </div>
         </div>
       </div>
     );

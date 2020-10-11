@@ -20,6 +20,17 @@
   height: 100%;
 }
 
+.logo {
+  position: relative;
+  width: fit-content;
+  height: fit-content;
+  margin: 0 auto;
+  background-color: #bbada0;
+  margin-top: 25px;
+  padding: 8px 8px 4px 8px;
+  border-radius: 8px 8px 8px 8px;
+}
+
 .row {
   display: flex;
   height: 25%;
@@ -88,7 +99,7 @@
   border-radius: 8px;
 }
 
-.title{
+.title {
   width: 42%;
   font-size: 50px;
   float: left;
