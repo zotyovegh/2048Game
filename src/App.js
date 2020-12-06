@@ -17,6 +17,14 @@ class App extends Component {
     this.gridRef = createRef();
   }
 
+  componentWillReceiveProps(nextProps) {
+    document.title = "2048 Game";
+  }
+
+  componentDidMount() {
+    document.title = "2048 Game";
+  }
+
   setScore = (value) => {
     let newValue = this.state.score + value;
     this.setState({ score: newValue });
